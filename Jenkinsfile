@@ -9,7 +9,8 @@ pipeline {
     stages {
         stage('Git Checkout') {
             steps {
-                git branch: 'latest', url: 'https://github.com/devopsprepa/CMU-Project7.git'
+                //git branch: 'latest', url: 'https://github.com/devopsprepa/CMU-Project7.git'
+                git branch: 'latest', url: 'https://github.com/b4shailen/cmu-microservices.git'
                 
             }
         }
