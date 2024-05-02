@@ -36,6 +36,7 @@ WORKDIR /email_server
 # Grab packages from builder
 COPY --from=builder /usr/local/lib/python3.12/ /usr/local/lib/python3.12/
 
+
 # Add the application
 COPY . .
 
