@@ -41,8 +41,6 @@ pipeline {
             changeset '**/src/adservice/**'
           }
           steps {
-            dependencyCheck(additionalArguments: ' --scan **/src/adservice/build.gradle', odcInstallation: 'DC')
-            dependencyCheckPublisher(pattern: '**/dependency-check-report.xml')
             script {
               withDockerRegistry(credentialsId: 'docker-cred', toolName: 'docker'){
                 dir('/var/lib/jenkins/workspace/CMU-CAPSTONE/src/adservice/') {
@@ -53,13 +51,15 @@ pipeline {
               }
             }
 
+            dependencyCheck(additionalArguments: ' --scan **/src/adservice/build.gradle', odcInstallation: 'DC')
+            dependencyCheckPublisher(pattern: '**/dependency-check-report.xml')
           }
         }
 
         stage('OWASP DC') {
           steps {
             sh '''dependencyCheck additionalArguments: \' --scan **/src/adservice/build.gradle\', odcInstallation: \'DC\'
-                dependencyCheckPublisher pattern: \'**/dependency-check-report.xml\''''
+Â  Â  Â  Â  Â  Â  Â  Â  dependencyCheckPublisher pattern: \'**/dependency-check-report.xml\''''
           }
         }
 
