@@ -7,7 +7,7 @@ pipeline {
     stages {
         stage('Git Checkout') {
             steps {
-                git branch: 'latest', url: 'https://github.com/devopsprepa/CMU-Project7.git'
+                git branch: 'main', url: 'https://github.com/b4shailen/cmu-microservices.git'
                 
             }
         }
@@ -24,12 +24,30 @@ pipeline {
             }
         }
     }
+        stage('TRIVY FS SCAN') {
+            steps {
+                sh " trivy fs --security-checks vuln /var/lib/jenkins/workspace/CMU-CAPSTONE"
+            }
+        }
+        
+        stage('OWASP Dependency Check(adservice)') {
+            steps {
+                dependencyCheck additionalArguments: ' --scan **/src/adservice/build.gradle', odcInstallation: 'DC'
+                dependencyCheckPublisher pattern: '**/dependency-check-report.xml'
+             
+            }
+        }
 
         stage('adservice') {
             when {
                 changeset "**/src/adservice/**"
-            }            
-            steps {
+            } 
+             steps {
+                 //sh 'echo "### Initiating Dependency check ####'
+                dependencyCheck additionalArguments: ' --scan **/src/adservice/build.gradle', odcInstallation: 'DC'
+                dependencyCheckPublisher pattern: '**/dependency-check-report.xml'
+             
+          
                 script{
                     withDockerRegistry(credentialsId: 'docker-cred', toolName: 'docker'){
                           dir('/var/lib/jenkins/workspace/CMU-CAPSTONE/src/adservice/') {
@@ -41,6 +59,12 @@ pipeline {
                 }
             }
         }
+            stage('Trivy Image Scan (adservice)') {
+                steps {
+                    //sh "trivy image --format table -o trivy-image-report.html cmupro7/adservice:${BUILD_NUMBER}"
+                    sh "trivy image cmupro7/adservice:${BUILD_NUMBER} > trivy-report.txt"
+                }
+            }
         
         
         stage('cartservice') {
