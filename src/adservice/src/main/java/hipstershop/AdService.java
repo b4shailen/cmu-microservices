@@ -13,8 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  * Adding this line to introduce change in code to test the CI-7 process only. 
-
- change for CI Demo
  */
 
 package hipstershop;
