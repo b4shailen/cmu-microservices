@@ -28,4 +28,5 @@ release/wi-kubernetes-manifests.yaml
 vendor/
 */adservice-sbom-*
 ../adservice-sbom-*
+*adservice-sbom-*
 *@tmp/
