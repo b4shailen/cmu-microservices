@@ -1,6 +1,0 @@
-+ git config user.email b4shailen@gmail.com
-+ git config user.name Shailendra Singh
-+ BUILD_NUMBER=123
-+ sed -i s/replaceImageTag/123/g /var/lib/jenkins/workspace/CMU-Mono-Repo/kubernetes-manifests/deploy_adservice.yaml
-+ git add /var/lib/jenkins/workspace/CMU-Mono-Repo/kubernetes-manifests/deploy_adservice.yaml
-+ git add --all
