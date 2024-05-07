@@ -10,7 +10,7 @@ spec:
       containers:
       - name: server
         # image: <new_image_name>:<new_image_tag>  # Update this line with the new image name and tag
-        image: adservice:22
+        image: adservice:124
         ports:
         - containerPort: 9555
         env:
