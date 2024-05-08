@@ -1,0 +1,5 @@
+{
+  "ok": false,
+  "error": "Could not find the specified file: cmupro7/adservice:131\nPlease check that it exists and try again.",
+  "path": "/var/lib/jenkins/workspace/CMU-Mono-Repo"
+}
